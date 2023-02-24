@@ -1,7 +1,16 @@
+import { useState } from 'react'
 import './App.css'
+import Login from './components/Login'
 
 function App() {
-  return <div className="App"></div>
+  const [id, setId] = useState<string>('')
+
+  return (
+    <div className="App">
+      {id}
+      <Login onSubmitId={setId} />
+    </div>
+  )
 }
 
 export default App
