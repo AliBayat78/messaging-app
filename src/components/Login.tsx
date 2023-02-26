@@ -11,7 +11,7 @@ const Login = ({ onSubmitId }: LoginType) => {
   }
 
   return (
-    <div className="ml-4 w-full">
+    <div className="ml-4 w-full h-full flex flex-col justify-center items-start">
       <h1>Enter Your Id</h1>
       <div className="flex flex-col w-2/3">
         <input

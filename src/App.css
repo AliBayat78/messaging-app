@@ -1,7 +1,4 @@
 .App {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-}/*# sourceMappingURL=App.css.map */
+  overflow-y: hidden;
+}
