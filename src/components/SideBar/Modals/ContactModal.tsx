@@ -1,10 +1,19 @@
 import './contactModal.css'
+import { useRef } from 'react'
 
 type ConcatModalTypeProps = {
   setContactModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ContactModal: React.FC<ConcatModalTypeProps> = ({ setContactModal }) => {
+  const idRef = useRef(null)
+  const nameRef = useRef(null)
+
+  const submitHandler = () => {
+    // createContact(idRef.current.value, nameRef.current.value)
+    setContactModal(false)
+  }
+
   return (
     <div className="fixed z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full modalContainer">
       <div className="relative w-full h-full max-w-md md:h-auto">
@@ -22,7 +31,7 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setContactModal }) => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                 clip-rule="evenodd"
               ></path>
@@ -38,6 +47,7 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setContactModal }) => {
                 Id
               </label>
               <input
+                ref={idRef}
                 type="Id"
                 name="Id"
                 id="Id"
@@ -54,6 +64,7 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setContactModal }) => {
                 Name
               </label>
               <input
+                ref={nameRef}
                 type="name"
                 name="name"
                 id="name"
@@ -64,7 +75,7 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setContactModal }) => {
             </div>
 
             <button
-              type="submit"
+              onClick={() => submitHandler()}
               className="w-20 cursor-pointer mt-2 flex justify-center items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Create
