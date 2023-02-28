@@ -1,4 +1,3 @@
-import './contactModal.css'
 import { useRef } from 'react'
 import { useCreateContacts } from '../../../contexts/ContactsProvider'
 
@@ -21,8 +20,8 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) => {
   }
 
   return (
-    <div className="fixed z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full modalContainer">
-      <div className="relative w-full h-full max-w-md md:h-auto">
+    <div className="flex justify-center items-center fixed z-30 w-screen h-screen p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal">
+      <div className="absolute z-50 w-1/6">
         {/* Modal content */}
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <button
@@ -89,6 +88,10 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) => {
           </div>
         </div>
       </div>
+      <div
+        className="absolute w-screen h-screen top-0 left-0 z-40 filter: blur-lg bg-slate-400"
+        onClick={() => setIsModalShown(false)}
+      ></div>
     </div>
   )
 }

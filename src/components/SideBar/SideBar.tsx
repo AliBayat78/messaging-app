@@ -9,12 +9,9 @@ const SideBar = ({ id }: any) => {
 
   return (
     <>
-      {isModalShown ? <ContactModal setIsModalShown={setIsModalShown} /> : ''}
-      <div
-        className={`flex flex-col w-screen h-screen ${
-          isModalShown ? 'filter: blur-lg bg-slate-400' : ''
-        }`}
-      >
+        {isModalShown ? <ContactModal setIsModalShown={setIsModalShown} /> : ''}
+
+      <div className="flex flex-col w-screen h-screen z-20">
         <div className="w-96 flex ml-2 flex-row justify-around border-solid border border-stone-500">
           <div
             onClick={() => setSection('conversations')}
@@ -51,8 +48,6 @@ const SideBar = ({ id }: any) => {
                 setIsModalShown((prevState) => !prevState)
               } else return
             }}
-            data-modal-target="authentication-modal"
-            data-modal-toggle="authentication-modal"
             className="block cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="button"
           >
