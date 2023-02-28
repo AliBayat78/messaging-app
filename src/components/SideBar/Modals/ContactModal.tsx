@@ -14,7 +14,7 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) => {
 
   const submitHandler = () => {
     if (idRef.current?.value && nameRef.current?.value) {
-      createContact(idRef.current?.value, nameRef.current?.value)
+      createContact({ id: idRef.current?.value, name: nameRef.current?.value })
       setIsModalShown(false)
     }
     setIsModalShown(false)

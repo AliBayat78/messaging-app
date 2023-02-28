@@ -3,14 +3,12 @@ import { childrenProps, contactType } from '../models/models'
 import useLocalStorage from '../hooks/useLocalStorage'
 
 const ContactsContext = React.createContext<contactType[]>([])
-const setContactsContext = React.createContext<(id: string, name: string) => void>(
-  (id: string, name: string) => {},
-)
+const setContactsContext = React.createContext<({ id, name }: contactType) => void>(() => {})
 
 const ContactsProvider: React.FC<childrenProps> = ({ children }) => {
   const [contacts, setContacts] = useLocalStorage('contacts', [])
 
-  const createContact = (id: string, name: string) => {
+  const createContact = ({ id, name }: contactType) => {
     setContacts((prevState: any) => {
       return [...prevState, { id, name }]
     })
