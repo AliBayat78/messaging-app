@@ -1,6 +1,10 @@
 export {}
 
-
 export interface childrenProps {
-    children: React.ReactNode
+  children: React.ReactNode
+}
+
+export interface contactType {
+  id: string
+  name: string
 }

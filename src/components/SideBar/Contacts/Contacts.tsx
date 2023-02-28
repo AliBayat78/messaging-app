@@ -6,7 +6,7 @@ const Contacts = () => {
   return (
     <div>
       {contacts.map((contact) => {
-        return <p key={contact.id}>{contact.name}</p>
+        return <p key={Math.random() + Number(contact.id)}>{contact.name}</p>
       })}
     </div>
   )

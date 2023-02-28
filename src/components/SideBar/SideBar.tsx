@@ -5,14 +5,14 @@ import ContactModal from './Modals/ContactModal'
 
 const SideBar = ({ id }: any) => {
   const [section, setSection] = useState<string>('conversations')
-  const [contactModal, setContactModal] = useState<boolean>(false)
+  const [isModalShown, setIsModalShown] = useState<boolean>(false)
 
   return (
     <>
-      {contactModal ? <ContactModal setContactModal={setContactModal} /> : ''}
+      {isModalShown ? <ContactModal setIsModalShown={setIsModalShown} /> : ''}
       <div
         className={`flex flex-col w-screen h-screen ${
-          contactModal ? 'filter: blur-lg bg-slate-400' : ''
+          isModalShown ? 'filter: blur-lg bg-slate-400' : ''
         }`}
       >
         <div className="w-96 flex ml-2 flex-row justify-around border-solid border border-stone-500">
@@ -48,7 +48,7 @@ const SideBar = ({ id }: any) => {
           <button
             onClick={() => {
               if (section === 'contacts') {
-                setContactModal((prev) => !prev)
+                setIsModalShown((prevState) => !prevState)
               } else return
             }}
             data-modal-target="authentication-modal"

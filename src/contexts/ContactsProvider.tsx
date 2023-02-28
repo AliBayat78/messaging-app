@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { childrenProps } from '../models/models'
+import { childrenProps, contactType } from '../models/models'
 import useLocalStorage from '../hooks/useLocalStorage'
 
-const ContactsContext = React.createContext<Array<{ id: string; name: string }>>([])
+const ContactsContext = React.createContext<contactType[]>([])
 const setContactsContext = React.createContext<(id: string, name: string) => void>(
   (id: string, name: string) => {},
 )
