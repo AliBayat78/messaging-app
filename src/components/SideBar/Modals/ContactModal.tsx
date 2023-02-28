@@ -1,16 +1,22 @@
 import './contactModal.css'
 import { useRef } from 'react'
+import { useCreateContacts } from '../../../contexts/ContactsProvider'
 
 type ConcatModalTypeProps = {
   setContactModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ContactModal: React.FC<ConcatModalTypeProps> = ({ setContactModal }) => {
-  const idRef = useRef(null)
-  const nameRef = useRef(null)
+  const idRef = useRef<HTMLInputElement>(null)
+  const nameRef = useRef<HTMLInputElement>(null)
+
+  const createContact = useCreateContacts()
 
   const submitHandler = () => {
-    // createContact(idRef.current.value, nameRef.current.value)
+    if (idRef.current?.value && nameRef.current?.value) {
+      createContact(idRef.current?.value, nameRef.current?.value)
+      setContactModal(false)
+    }
     setContactModal(false)
   }
 
