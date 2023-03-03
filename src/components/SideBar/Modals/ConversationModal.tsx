@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useContacts } from '../../../contexts/ContactsProvider'
+import { useCreateConversations } from '../../../contexts/ConversationProvider'
 
 type ConcatModalTypeProps = {
   setIsModalShown: React.Dispatch<React.SetStateAction<string>>
@@ -8,6 +9,7 @@ type ConcatModalTypeProps = {
 const ConversationModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) => {
   const [selectedContactIds, setSelectedContactIds] = useState<string[]>([])
 
+  const createConversation = useCreateConversations()
   const contacts = useContacts()
 
   const handleCheckboxChange = (contactId: string) => {
@@ -21,8 +23,8 @@ const ConversationModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) 
   }
 
   const submitHandler = () => {
+    createConversation(selectedContactIds)
     setIsModalShown('')
-    console.log(selectedContactIds)
   }
 
   return (
