@@ -2,14 +2,21 @@ import { useState } from 'react'
 import Contacts from './Contacts/Contacts'
 import Conversations from './Conversations/Conversations'
 import ContactModal from './Modals/ContactModal'
+import ConversationModal from './Modals/ConversationModal'
 
 const SideBar = ({ id }: any) => {
   const [section, setSection] = useState<string>('conversations')
-  const [isModalShown, setIsModalShown] = useState<boolean>(false)
+  const [isModalShown, setIsModalShown] = useState<string>('')
 
   return (
     <>
-        {isModalShown ? <ContactModal setIsModalShown={setIsModalShown} /> : ''}
+      {isModalShown === 'contacts' ? (
+        <ContactModal setIsModalShown={setIsModalShown} />
+      ) : isModalShown === 'conversations' ? (
+        <ConversationModal setIsModalShown={setIsModalShown} />
+      ) : (
+        ''
+      )}
 
       <div className="flex flex-col w-screen h-screen z-20">
         <div className="w-96 flex ml-2 flex-row justify-around border-solid border border-stone-500">
@@ -45,7 +52,10 @@ const SideBar = ({ id }: any) => {
           <button
             onClick={() => {
               if (section === 'contacts') {
-                setIsModalShown((prevState) => !prevState)
+                setIsModalShown('contacts')
+              }
+              if (section === 'conversations') {
+                setIsModalShown('conversations')
               } else return
             }}
             className="block cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

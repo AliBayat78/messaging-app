@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useCreateContacts } from '../../../contexts/ContactsProvider'
 
 type ConcatModalTypeProps = {
-  setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>
+  setIsModalShown: React.Dispatch<React.SetStateAction<string>>
 }
 
 const ContactModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) => {
@@ -14,9 +14,9 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) => {
   const submitHandler = () => {
     if (idRef.current?.value && nameRef.current?.value) {
       createContact({ id: idRef.current?.value, name: nameRef.current?.value })
-      setIsModalShown(false)
+      setIsModalShown('')
     }
-    setIsModalShown(false)
+    setIsModalShown('')
   }
 
   return (
@@ -25,7 +25,7 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) => {
         {/* Modal content */}
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <button
-            onClick={() => setIsModalShown(false)}
+            onClick={() => setIsModalShown('')}
             type="button"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
           >
@@ -53,7 +53,7 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) => {
               </label>
               <input
                 ref={idRef}
-                type="Id"
+                type="textt"
                 name="Id"
                 id="Id"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
@@ -70,7 +70,7 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) => {
               </label>
               <input
                 ref={nameRef}
-                type="name"
+                type="text"
                 name="name"
                 id="name"
                 placeholder="Name"
@@ -90,7 +90,7 @@ const ContactModal: React.FC<ConcatModalTypeProps> = ({ setIsModalShown }) => {
       </div>
       <div
         className="absolute w-screen h-screen top-0 left-0 z-40 filter: blur-lg bg-slate-400"
-        onClick={() => setIsModalShown(false)}
+        onClick={() => setIsModalShown('')}
       ></div>
     </div>
   )
