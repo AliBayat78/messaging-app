@@ -1,5 +1,20 @@
+import { useConversations } from '../../../contexts/ConversationProvider'
+import { useEffect } from 'react'
+
 const Conversations = () => {
-  return <div>Conversations</div>
+  const conversations = useConversations()
+
+  useEffect(() => {
+    console.log(conversations)
+  }, [])
+
+  return (
+    <div>
+      {conversations.map((conversation: any) => {
+        return <p key={Math.random() + Number(conversation.id)}>{conversation.name}</p>
+      })}
+    </div>
+  )
 }
 
 export default Conversations

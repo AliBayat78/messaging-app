@@ -1,5 +1,3 @@
-export {}
-
 export interface childrenProps {
   children: React.ReactNode
 }
@@ -10,6 +8,6 @@ export interface contactType {
 }
 
 export interface conversationsType {
-  messages: string[] | []
+  messages: string[]
   recipients: string[]
 }
