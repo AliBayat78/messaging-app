@@ -11,7 +11,11 @@ const Conversations = () => {
   return (
     <div>
       {conversations.map((conversation: any) => {
-        return <p key={Math.random() + Number(conversation.id)}>{conversation.name}</p>
+        return (
+          <p key={Math.random() + Number(conversation.recipients.id)}>
+            {conversation.recipients.name}
+          </p>
+        )
       })}
     </div>
   )

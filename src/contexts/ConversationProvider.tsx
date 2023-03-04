@@ -19,19 +19,20 @@ const ConversationProvider: React.FC<childrenProps> = ({ children }) => {
   //! FormattedConversation include name and Id  instead of just an string Id
   const formattedConversation = () => {
     const recipients = conversations.map((recipient: any) => {
+      console.log('contacts: ' + contacts.map((c) => c.id))
+      console.log('recipient.recipients: ' + recipient.recipients)
       const contact: any = contacts.filter((contact) => {
-        return recipient.recipients.filter((r: string) => r !== contact.id)
+        const name = (contact && contact.name) || recipient
+        return recipient.recipients.filter((r: string) => (r === contact.id ? name : null))
       })
-      const name = (contact && contact.name) || recipient
-      console.log(contact)
-      return { id: recipient, name }
+      console.log('name ' + contact.name)
+      return { id: recipient.recipients, name: contact }
     })
-
     return { ...conversations, recipients }
   }
 
   useEffect(() => {
-    formattedConversation()
+    console.log(formattedConversation())
   }, [conversations])
 
   return (
