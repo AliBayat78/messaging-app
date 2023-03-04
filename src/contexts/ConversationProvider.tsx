@@ -16,19 +16,33 @@ const ConversationProvider: React.FC<childrenProps> = ({ children }) => {
     })
   }
 
+  //? Wrong Approach
+  // const formattedConversation = () => {
+  //   const recipients = conversations.map((recipient: any) => {
+  //     console.log('contacts: ' + contacts.map((c) => c.id))
+  //     console.log('recipient.recipients: ' + recipient.recipients)
+  //     const contact: any = contacts.filter((contact) => {
+  //       const name = (contact && contact.name) || recipient
+  //       return recipient.recipients.filter((r: string) => (r === contact.id ? name : null))
+  //     })
+  //     console.log('name ' + contact.name)
+  //     return { id: recipient.recipients, name: contact }
+  //   })
+  //   return { ...conversations, recipients }
+  // }
+
   //! FormattedConversation include name and Id  instead of just an string Id
   const formattedConversation = () => {
-    const recipients = conversations.map((recipient: any) => {
-      console.log('contacts: ' + contacts.map((c) => c.id))
-      console.log('recipient.recipients: ' + recipient.recipients)
-      const contact: any = contacts.filter((contact) => {
-        const name = (contact && contact.name) || recipient
-        return recipient.recipients.filter((r: string) => (r === contact.id ? name : null))
+    return conversations.map((conversation: any) => {
+      const recipients = conversation.recipients.map((recipientId: any) => {
+        const contact = contacts.find((c) => c.id === recipientId)
+        return {
+          id: recipientId,
+          name: contact ? contact.name : recipientId,
+        }
       })
-      console.log('name ' + contact.name)
-      return { id: recipient.recipients, name: contact }
+      return { ...conversation, recipients }
     })
-    return { ...conversations, recipients }
   }
 
   useEffect(() => {
