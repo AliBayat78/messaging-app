@@ -8,6 +8,6 @@ export interface contactType {
 }
 
 export interface conversationsType {
-  messages: string[]
-  recipients: string[]
+  recipients: { id: string; name: string }[]
+  messages: any[]
 }
