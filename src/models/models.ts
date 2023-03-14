@@ -10,4 +10,5 @@ export interface contactType {
 export interface conversationsType {
   recipients: { id: string; name: string }[]
   messages: any[]
+  selected?: boolean
 }

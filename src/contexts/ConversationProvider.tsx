@@ -1,13 +1,25 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { childrenProps, conversationsType } from '../models/models'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { useContacts } from './ContactsProvider'
 
-const ConversationContext = React.createContext<conversationsType[]>([])
-const setConversationContext = React.createContext<(recipients: string[]) => void>(() => {})
+type ConversationContextType = {
+  conversations: conversationsType[]
+  selectedConversationIndex: number
+  setSelectedConversationIndex: (index: number) => void
+  createConversation: (recipients: string[]) => void
+}
+
+const ConversationContext = React.createContext<ConversationContextType>({
+  conversations: [],
+  selectedConversationIndex: 0,
+  setSelectedConversationIndex: () => {},
+  createConversation: () => {},
+})
 
 const ConversationProvider: React.FC<childrenProps> = ({ children }) => {
   const [conversations, setConversations] = useLocalStorage('conversations', [])
+  const [selectedConversationIndex, setSelectedConversationIndex] = useState<number>(0)
   const contacts = useContacts()
 
   const createConversation = (recipients: string[]) => {
@@ -30,16 +42,18 @@ const ConversationProvider: React.FC<childrenProps> = ({ children }) => {
     console.log(conversations)
   }, [conversations])
 
+  const contextValue: ConversationContextType = {
+    conversations,
+    selectedConversationIndex,
+    setSelectedConversationIndex,
+    createConversation,
+  }
+
   return (
-    <ConversationContext.Provider value={conversations}>
-      <setConversationContext.Provider value={createConversation}>
-        {children}
-      </setConversationContext.Provider>
-    </ConversationContext.Provider>
+    <ConversationContext.Provider value={contextValue}>{children}</ConversationContext.Provider>
   )
 }
 
 export default ConversationProvider
 
 export const useConversations = () => useContext(ConversationContext)
-export const useCreateConversations = () => useContext(setConversationContext)

@@ -2,7 +2,7 @@ import { useConversations } from '../../../contexts/ConversationProvider'
 import { useEffect } from 'react'
 
 const Conversations = () => {
-  const conversations = useConversations()
+  const { conversations } = useConversations()
 
   return (
     <div>
