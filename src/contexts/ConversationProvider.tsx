@@ -32,10 +32,17 @@ const ConversationProvider: React.FC<childrenProps> = ({ children }) => {
         name: contact ? contact.name : recipientId,
       }
     })
-    setConversations((prevConversations: any[]) => [
-      ...prevConversations,
-      { ...newConversation, recipients: formattedRecipients },
-    ])
+
+    setConversations((prevConversations: any[]) => {
+      const index = prevConversations.findIndex((conversation) => conversation.selected)
+      if (index !== -1) {
+        prevConversations[index].selected = false
+      }
+      return [
+        ...prevConversations,
+        { ...newConversation, recipients: formattedRecipients, selected: true },
+      ]
+    })
   }
 
   useEffect(() => {

@@ -9,7 +9,7 @@ const Conversations = () => {
       <div>
         <h2>Conversations:</h2>
         {conversations.map((conversation) => (
-          <div key={conversation.recipients.join('-')}>
+          <div key={Math.random() + Math.random()}>
             <ul>{conversation.recipients.map((r) => r.name).join(', ')}</ul>
           </div>
         ))}
