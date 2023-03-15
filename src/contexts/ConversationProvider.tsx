@@ -24,6 +24,7 @@ const ConversationProvider: React.FC<childrenProps> = ({ children }) => {
 
   const createConversation = (recipients: string[]) => {
     const newConversation = { recipients, messages: [] }
+
     //! FormattedConversation include name and Id  instead of just an string Id
     const formattedRecipients = recipients.map((recipientId: any) => {
       const contact = contacts.find((c) => c.id === recipientId)
@@ -35,7 +36,7 @@ const ConversationProvider: React.FC<childrenProps> = ({ children }) => {
 
     setConversations((prevConversations: any[]) => {
       const index = prevConversations.findIndex((conversation) => conversation.selected)
-      if (index !== -1) {
+      if (index !== selectedConversationIndex) {
         prevConversations[index].selected = false
       }
       return [
@@ -45,9 +46,20 @@ const ConversationProvider: React.FC<childrenProps> = ({ children }) => {
     })
   }
 
+  //* Check Selected Conversation and make it true or false
   useEffect(() => {
-    console.log(conversations)
-  }, [conversations])
+    setConversations((prevConversations: any[]) => {
+      const index = prevConversations.findIndex((conversation) => conversation.selected)
+
+      if (index !== selectedConversationIndex && prevConversations[index]) {
+        prevConversations[index].selected = false
+      }
+      if (prevConversations[selectedConversationIndex]) {
+        prevConversations[selectedConversationIndex].selected = true
+      }
+      return prevConversations
+    })
+  }, [selectedConversationIndex, conversations])
 
   const contextValue: ConversationContextType = {
     conversations,
