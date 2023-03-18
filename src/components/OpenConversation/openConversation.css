@@ -1,0 +1,7 @@
+.conversation-container {
+  height: 90vh;
+  margin-bottom: 4rem;
+}
+.conversation-container textarea {
+  resize: none;
+}/*# sourceMappingURL=openConversation.css.map */

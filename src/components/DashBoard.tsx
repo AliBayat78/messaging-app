@@ -1,3 +1,5 @@
+import { useConversations } from '../contexts/ConversationProvider'
+import OpenConversation from './OpenConversation/OpenConversation'
 import SideBar from './SideBar/SideBar'
 
 type DashBoardTypeProps = {
@@ -5,9 +7,12 @@ type DashBoardTypeProps = {
 }
 
 const DashBoard: React.FC<DashBoardTypeProps> = ({ id }) => {
+  const { currentSelectedConversation } = useConversations()
+
   return (
-    <div className="w-2/3">
+    <div className="w-full flex flex-row justify-around items-end">
       <SideBar id={id} />
+      {currentSelectedConversation && <OpenConversation />}
     </div>
   )
 }
