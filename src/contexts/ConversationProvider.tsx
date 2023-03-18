@@ -6,6 +6,7 @@ import { useContacts } from './ContactsProvider'
 type ConversationContextType = {
   conversations: conversationsType[]
   selectedConversationIndex: number
+  currentSelectedConversation: conversationsType
   setSelectedConversationIndex: (index: number) => void
   createConversation: (recipients: string[]) => void
 }
@@ -13,6 +14,7 @@ type ConversationContextType = {
 const ConversationContext = React.createContext<ConversationContextType>({
   conversations: [],
   selectedConversationIndex: 0,
+  currentSelectedConversation: { recipients: [], messages: [] },
   setSelectedConversationIndex: () => {},
   createConversation: () => {},
 })
@@ -64,6 +66,7 @@ const ConversationProvider: React.FC<childrenProps> = ({ children }) => {
   const contextValue: ConversationContextType = {
     conversations,
     selectedConversationIndex,
+    currentSelectedConversation: conversations[selectedConversationIndex],
     setSelectedConversationIndex,
     createConversation,
   }

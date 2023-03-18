@@ -2,8 +2,12 @@ import { useConversations } from '../../../contexts/ConversationProvider'
 import { useEffect } from 'react'
 
 const Conversations = () => {
-  const { conversations, setSelectedConversationIndex, selectedConversationIndex } =
-    useConversations()
+  const {
+    conversations,
+    setSelectedConversationIndex,
+    selectedConversationIndex,
+    currentSelectedConversation,
+  } = useConversations()
 
   return (
     <div>
@@ -13,7 +17,9 @@ const Conversations = () => {
           <div
             onClick={() => setSelectedConversationIndex(index)}
             key={Math.random() + Math.random()}
-            className={`${selectedConversationIndex === index ? 'bg-sky-600' : ''}`}
+            className={`p-2 cursor-pointer ${
+              selectedConversationIndex === index ? 'bg-sky-600 text-white' : ''
+            }`}
           >
             <ul>{conversation.recipients.map((r) => r.name).join(', ')}</ul>
           </div>
